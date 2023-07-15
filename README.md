@@ -149,3 +149,30 @@ AS
     END;
 END CLIENT_PKG;
 ```
+
+## Postman
+
+Se creó una colección de postman que crea clientes con datos aleatorios y hace uso de variables en todas las peticiones para poder probar el API Rest fácilmente. Puede descargar la colección de postman [aquí](docs/postman/Client.postman_collection.json) y el environment aquí [aquí](docs/postman/local.postman_environment.json).
+
+A continuación algunas imágenes de las peticiones:
+
+![](docs/images/postman-create1.png "")
+
+
+![](docs/images/postman-create2.png "")
+
+
+![](docs/images/postman-create3.png "")
+
+
+![](docs/images/postman-get.png "")
+
+
+![](docs/images/postman-update.png "")
+
+
+![](docs/images/postman-delete.png "")
+
+
+![](docs/images/postman-getall.png "")
+

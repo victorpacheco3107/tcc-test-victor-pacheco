@@ -1,0 +1,230 @@
+{
+	"info": {
+		"_postman_id": "2d4ff595-094b-4bf0-b18f-c0748c5c6586",
+		"name": "Client",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "553616"
+	},
+	"item": [
+		{
+			"name": "Create Client",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response = pm.response.json();",
+							"pm.collectionVariables.set(\"identificationType\", response.identificationType);",
+							"pm.collectionVariables.set(\"identification\", response.identification);",
+							"pm.collectionVariables.set(\"name\", response.name);",
+							"pm.collectionVariables.set(\"gender\", response.gender);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set('identification', generateRandomInt());",
+							"",
+							"let genders = ['M', 'F'];",
+							"let indexGender = generateRandomInt(0, 2);",
+							"console.log(indexGender);",
+							"pm.collectionVariables.set('gender', genders[indexGender]);",
+							"",
+							"let identificationTypes = ['CC', 'CE', 'NIT'];",
+							"let indexIdentificationType = generateRandomInt(0, 3);",
+							"console.log(indexIdentificationType);",
+							"pm.collectionVariables.set('identificationType', identificationTypes[indexIdentificationType]);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"identificationType\": \"{{identificationType}}\",\n    \"identification\": {{identification}},\n    \"name\": \"{{$randomFullName}}\",\n    \"gender\": \"{{gender}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{servicePath}}{{contextPath}}/client",
+					"host": [
+						"{{servicePath}}{{contextPath}}"
+					],
+					"path": [
+						"client"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Client",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{servicePath}}{{contextPath}}/client/{{identification}}?identificationType={{identificationType}}",
+					"host": [
+						"{{servicePath}}{{contextPath}}"
+					],
+					"path": [
+						"client",
+						"{{identification}}"
+					],
+					"query": [
+						{
+							"key": "identificationType",
+							"value": "{{identificationType}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Client",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let oldGender = pm.collectionVariables.get(\"gender\");",
+							"pm.collectionVariables.set('gender', oldGender == 'M' ? 'F' : 'M');"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"{{name}} UPDATED\",\n    \"gender\": \"{{gender}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{servicePath}}{{contextPath}}/client/{{identification}}?identificationType={{identificationType}}",
+					"host": [
+						"{{servicePath}}{{contextPath}}"
+					],
+					"path": [
+						"client",
+						"{{identification}}"
+					],
+					"query": [
+						{
+							"key": "identificationType",
+							"value": "{{identificationType}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Client",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{servicePath}}{{contextPath}}/client/{{identification}}?identificationType={{identificationType}}",
+					"host": [
+						"{{servicePath}}{{contextPath}}"
+					],
+					"path": [
+						"client",
+						"{{identification}}"
+					],
+					"query": [
+						{
+							"key": "identificationType",
+							"value": "{{identificationType}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Clients",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{servicePath}}{{contextPath}}/client",
+					"host": [
+						"{{servicePath}}{{contextPath}}"
+					],
+					"path": [
+						"client"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"generateRandomInt = function (min = 100, max = 10000000000) {",
+					"    // Min inclusive, max exclusive",
+					"    // find diff",
+					"    let difference = max - min;",
+					"    // generate random number ",
+					"    let rand = Math.random();",
+					"    // multiply with difference ",
+					"    rand = Math.floor( rand * difference);",
+					"    // add with min value ",
+					"    rand = rand + min;",
+					"    return rand;",
+					"}"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "identificationType",
+			"value": ""
+		},
+		{
+			"key": "identification",
+			"value": ""
+		},
+		{
+			"key": "name",
+			"value": ""
+		},
+		{
+			"key": "gender",
+			"value": ""
+		}
+	]
+}
