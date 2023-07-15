@@ -3,6 +3,7 @@ package com.tcc.victorpacheco.domain.service;
 import com.tcc.victorpacheco.domain.Client;
 import com.tcc.victorpacheco.domain.constant.IdentificationType;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -43,5 +44,11 @@ public interface ClientService {
      * @param identification {@link  Client#identification Client}'s identification to delete.
      */
     void deleteClient(IdentificationType identificationType, Long identification);
+
+    /**
+     * Find all clients.
+     * @return All clients.
+     */
+    List<Client> findAllClients();
 
 }

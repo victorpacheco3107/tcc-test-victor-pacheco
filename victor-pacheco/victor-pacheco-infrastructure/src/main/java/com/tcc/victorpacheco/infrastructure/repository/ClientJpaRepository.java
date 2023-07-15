@@ -7,6 +7,7 @@ import com.tcc.victorpacheco.domain.constant.Operation;
 import com.tcc.victorpacheco.domain.repository.ClientRepository;
 import com.tcc.victorpacheco.infrastructure.entity.ClientEntity;
 import com.tcc.victorpacheco.infrastructure.entity.ClientId;
+import org.mapstruct.Mapper;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
@@ -14,7 +15,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Repository
 @Transactional
@@ -59,6 +62,17 @@ public interface ClientJpaRepository extends ClientRepository, JpaRepository<Cli
                 .gender(Gender.valueOf((String) clientColumnData[GENDER_INDEX]))
                 .build()
         );
+    }
+
+    @Override
+    default List<Client> findAllClients(){
+        return findAll().stream().map(client -> Client.builder()
+            .identificationType(client.getId().getIdentificationType())
+            .identification(client.getId().getIdentification())
+            .name(client.getName())
+            .gender(client.getGender())
+            .build()
+        ).collect(Collectors.toList());
     }
 
 }

@@ -82,4 +82,70 @@ El diagrama de dependencia entre los módulos es el siguiente:
 ![Modules](docs/images/modules.png "Modules")
 
 ## Frontend
-TODO
+
+El frontend es una aplicación web que usa Angular 16, consta de 3 pantallas y 4 funcionalidades.
+
+1. Pantalla de listar clientes, donde se pueden consultar todos los clientes y acceder a las funcionalidades de editar y eliminar cliente:
+   ![Front List](docs/images/front-list.png "Front List")
+
+2. Pantalla de crear cliente:
+   ![Front Create](docs/images/front-create.png "Front Create")
+
+3. Pantalla de actualizar cliente:
+   ![Front Update](docs/images/front-update.png "Front Update")
+   
+## Procedimiento Almacenado - Oracle
+
+Se creó un paquete y un procedimiento almacenado:
+
+```sql
+CREATE OR REPLACE PACKAGE CLIENT_PKG
+AS
+	TYPE client_ref_cursor IS REF CURSOR RETURN CLIENT%ROWTYPE;
+	PROCEDURE CLIENT_CRUD(
+	    operation_in IN integer,
+	    identification_type_in IN CLIENT.IDENTIFICATION_TYPE%TYPE,
+	    identification_in IN CLIENT.IDENTIFICATION%TYPE,
+	    name_in IN CLIENT.NAME%TYPE,
+	    gender_in IN CLIENT.GENDER%TYPE,
+	    client_out OUT client_ref_cursor
+    );
+END CLIENT_PKG;
+
+
+CREATE OR REPLACE PACKAGE BODY CLIENT_PKG
+AS
+    PROCEDURE CLIENT_CRUD(
+	    operation_in IN integer,
+	    identification_type_in IN CLIENT.IDENTIFICATION_TYPE%TYPE,
+	    identification_in IN CLIENT.IDENTIFICATION%TYPE,
+	    name_in IN CLIENT.NAME%TYPE,
+	    gender_in IN CLIENT.GENDER%TYPE,
+	    client_out OUT client_ref_cursor
+    ) IS
+    BEGIN
+        IF operation_in != 0 THEN
+            CASE
+                WHEN operation_in = 1 THEN
+                    INSERT INTO CLIENT(identification_type, identification, name, gender)
+                    VALUES (identification_type_in, identification_in, name_in, gender_in);
+                WHEN operation_in = 2 THEN
+                    UPDATE CLIENT SET
+                        name = name_in,
+                        gender = gender_in
+                    WHERE
+                        identification_type = identification_type_in AND
+                        identification = identification_in;
+                WHEN operation_in = 3 THEN
+                    DELETE FROM CLIENT
+                    WHERE
+                        identification_type = identification_type_in AND
+                        identification = identification_in;
+            END CASE;
+        END IF;
+
+        OPEN client_out FOR
+        SELECT * FROM CLIENT c WHERE c.IDENTIFICATION_TYPE = identification_type_in AND c.IDENTIFICATION = identification_in;
+    END;
+END CLIENT_PKG;
+```

@@ -1,0 +1,51 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Consultar Clientes</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <table mat-table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="identificationType">
+        <th mat-header-cell *matHeaderCellDef> Tipo de Documento </th>
+        <td mat-cell *matCellDef="let element"> {{element.identificationType}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="identification">
+        <th mat-header-cell *matHeaderCellDef> Documento </th>
+        <td mat-cell *matCellDef="let element"> {{element.identification}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="gender">
+        <th mat-header-cell *matHeaderCellDef> Genero </th>
+        <td mat-cell *matCellDef="let element"> {{element.gender == 'M' ? 'Masculino' : 'Femenino'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="options">
+        <th mat-header-cell *matHeaderCellDef> Opciones </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="primary"
+            [routerLink]="['/update-client', element.identification]"
+            [queryParams]="{ identificationType: element.identificationType}">
+            <mat-icon>update</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteClient(element)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </mat-card-content>
+</mat-card>

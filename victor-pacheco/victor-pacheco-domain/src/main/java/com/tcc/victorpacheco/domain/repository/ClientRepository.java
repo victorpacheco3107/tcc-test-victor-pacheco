@@ -3,6 +3,7 @@ package com.tcc.victorpacheco.domain.repository;
 import com.tcc.victorpacheco.domain.Client;
 import com.tcc.victorpacheco.domain.constant.Operation;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -19,5 +20,11 @@ public interface ClientRepository {
      * @return Client with information returned by procedure.
      */
     Optional<Client> executeProcedure(Operation operation, Client client);
+
+    /**
+     * Find all clients.
+     * @return All clients.
+     */
+    List<Client> findAllClients();
 
 }

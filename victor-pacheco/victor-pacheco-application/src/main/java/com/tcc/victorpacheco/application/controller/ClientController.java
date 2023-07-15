@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/client")
 @Validated
+@CrossOrigin(origins = "http://localhost:4200")
 public class ClientController {
 
     private final ClientMapper clientMapper;
@@ -106,5 +108,11 @@ public class ClientController {
 
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping
+    public ResponseEntity<List<ClientResponse>> findAllClient(){
+        return ResponseEntity.ok(clientMapper.clientToResponse(clientService.findAllClients()));
+    }
+
 
 }

@@ -1,0 +1,64 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Actualizar Cliente</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-grid-list cols="4" rowHeight="100px">
+
+      <mat-grid-tile>
+        <mat-form-field>
+          <mat-label>Tipo de Documento</mat-label>
+          <mat-select [(ngModel)]="client.identificationType" disabled>
+            <mat-option value="CC">Cedula de Ciudadanía</mat-option>
+            <mat-option value="CE">Cedula de Extranjería</mat-option>
+            <mat-option value="NIT">NIT</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field>
+          <mat-label>Documento</mat-label>
+          <input [(ngModel)]="client.identification" matInput type="number" disabled>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field>
+          <mat-label>Nombre</mat-label>
+          <input [(ngModel)]="client.name" matInput>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field>
+          <mat-label>Genero</mat-label>
+          <mat-select [(ngModel)]="client.gender">
+            <mat-option value="F">Femenino</mat-option>
+            <mat-option value="M">Masculino</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+
+    </mat-grid-list>
+
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button
+      class="action-button"
+      mat-raised-button
+      color="primary"
+      [disabled]="checkClient()"
+      (click)="updateClient()">
+      Actualizar Cliente
+    </button>
+    <button
+      class="action-button" mat-raised-button
+      routerLink="/clients"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page">
+      Cancelar
+    </button>
+  </mat-card-actions>
+</mat-card>

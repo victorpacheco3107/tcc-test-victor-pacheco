@@ -7,6 +7,7 @@ import com.tcc.victorpacheco.domain.exception.ClientAlreadyExistException;
 import com.tcc.victorpacheco.domain.exception.ClientNotFoundException;
 import com.tcc.victorpacheco.domain.repository.ClientRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -71,6 +72,14 @@ public class DomainClientService implements ClientService {
             throw new ClientNotFoundException(client);
         }
         clientRepository.executeProcedure(Operation.DELETE, client);
+    }
+
+    /**
+     * @see ClientService#findAllClients()
+     */
+    @Override
+    public List<Client> findAllClients() {
+        return clientRepository.findAllClients();
     }
 
 }

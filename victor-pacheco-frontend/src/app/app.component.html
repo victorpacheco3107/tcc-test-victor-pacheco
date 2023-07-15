@@ -1,0 +1,23 @@
+<mat-toolbar>
+  <span>Prueba Técnica Victor Pacheco</span>
+  <button
+    class="button-header"
+    mat-raised-button
+    routerLink="/clients"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page">
+    Listar Clientes
+  </button>
+  <button
+    class="button-header"
+    mat-raised-button
+    routerLink="/create-client"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page">
+    Crear Cliente
+  </button>
+</mat-toolbar>
+<div class="container mat-elevation-z8">
+  <router-outlet></router-outlet>
+</div>
+
