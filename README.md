@@ -176,3 +176,41 @@ A continuación algunas imágenes de las peticiones:
 
 ![](docs/images/postman-getall.png "")
 
+## Historias de Usuario
+
+### Historia de Usuario 001: Crear Cliente
+
+**Característica**: Crear Cliente
+
+Como usuario, quiero crear un cliente.
+
+**Escenario 1:**
+**Dado** que un usuario ingrese a la opción crear cliente y completa el formulario
+**cuando** el usuario ingresa un tipo de documento y un documento que ya se encuentren registrados en la aplicación
+**entonces** la aplicación debe mostrar un mensaje indicando que ya se ha creado un cliente con esa identificación
+
+**Escenario 2:**
+**Dado** que un usuario ingrese a la opción crear cliente y completa el formulario
+**cuando** el usuario ingresa un tipo de documento y un documento que no se encuentren registrados en la aplicación
+**entonces** la aplicación debe registrar la información del cliente en la base de datos y mostrar un mensaje de éxito confirmando la creación del cliente. 
+
+### Historia de Usuario 002: Actualizar Cliente
+
+**Característica**: Actualizar Cliente
+
+Como usuario, quiero actualizar un cliente.
+y luego 
+**Escenario 1:**
+**Dado** que un usuario ingrese a la opción listar cliente y haga clic en el botón actualizar cliente 
+**cuando** el usuario haya completado correctamente el formulario de actualización de cliente y haga clic en el botón actualizar cliente
+**entonces** la aplicación debe actualizar la información del cliente en la base de datos y mostrar un mensaje de éxito confirmando la actualizacón del cliente.
+
+**Escenario 2:**
+**Dado** que un usuario ingresa a la opción actualizar cliente ingresando la url en el navegador
+**cuando** el usuario ingresa en la url un tipo de documento y un documento que no se encuentren registrados en la aplicación
+**entonces** la aplicación debe mostrar un mensaje de error indicando que el usuario no existe y debe redirigir a la opción de consulta de cliente.
+
+**Escenario 3:**
+**Dado** que un usuario ingresa a la opción actualizar cliente ingresando la url en el navegador
+**cuando** el usuario ingresa en la url un tipo de documento y un documento que se encuentren registrados en la aplicación
+**entonces** la aplicación debe cargar el formulario de actualizar cliente con la información del cliente que se encuentra en la base de datos. 

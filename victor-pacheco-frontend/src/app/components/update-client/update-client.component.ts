@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ClientService} from "../../services/client.service";
 import {Client} from "../../model/client.model";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -15,6 +15,7 @@ export class UpdateClientComponent implements OnInit{
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private clientService: ClientService,
     private snackBar: MatSnackBar
   ) {
@@ -34,6 +35,7 @@ export class UpdateClientComponent implements OnInit{
       },
       error: (e) => {
         this.snackBar.open(e.error.errors, "Cerrar");
+        this.router.navigateByUrl('clients');
       }
     });
   }
