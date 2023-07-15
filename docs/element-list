@@ -1,0 +1,5 @@
+com.tcc.victorpacheco.domain
+com.tcc.victorpacheco.domain.constant
+com.tcc.victorpacheco.domain.exception
+com.tcc.victorpacheco.domain.repository
+com.tcc.victorpacheco.domain.service

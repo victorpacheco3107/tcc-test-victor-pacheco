@@ -6,5 +6,16 @@ package com.tcc.victorpacheco.domain.constant;
  * @since 1.0
  */
 public enum IdentificationType {
-    CC, NIT, CE;
+    /**
+     * Constant for 'C&eacute;dula de Ciudadan&iacute;a' identification type.
+     */
+    CC,
+    /**
+     * Constant for 'NIT' identification type.
+     */
+    NIT,
+    /**
+     * Constant for 'C&eacute;dula de Extranjer&iacute;a' identification type.
+     */
+    CE;
 }

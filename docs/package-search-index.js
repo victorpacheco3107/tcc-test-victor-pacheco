@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.tcc.victorpacheco.domain"},{"l":"com.tcc.victorpacheco.domain.constant"},{"l":"com.tcc.victorpacheco.domain.exception"},{"l":"com.tcc.victorpacheco.domain.repository"},{"l":"com.tcc.victorpacheco.domain.service"}]

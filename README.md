@@ -9,4 +9,4 @@ Submódulos:
 * application
 * laucher
 
-![Tests Coverage](documentation/images/tests-coverage.png "Tests Coverage")
+![Tests Coverage](docs/images/tests-coverage.png "Tests Coverage")

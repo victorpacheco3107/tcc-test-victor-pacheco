@@ -16,7 +16,7 @@ public interface ClientRepository {
      * Execute the procedure CLIENT_PKG.CLIENT_CRUD
      * @param operation Operation to perform. 0 for search, 1 for insert, 2 for update and 3 for delete.
      * @param client Information to pass on to procedure.
-     * @return
+     * @return Client with information returned by procedure.
      */
     Optional<Client> executeProcedure(Operation operation, Client client);
 

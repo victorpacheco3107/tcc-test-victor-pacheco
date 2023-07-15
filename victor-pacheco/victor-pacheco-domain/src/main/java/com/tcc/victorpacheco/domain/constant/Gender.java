@@ -6,5 +6,12 @@ package com.tcc.victorpacheco.domain.constant;
  * @since 1.0
  */
 public enum Gender {
-    M, F
+    /**
+     * Constant for male gender.
+     */
+    M,
+    /**
+     * Constant for female gender.
+     */
+    F;
 }

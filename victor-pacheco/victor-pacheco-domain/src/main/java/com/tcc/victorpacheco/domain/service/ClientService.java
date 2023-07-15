@@ -13,9 +13,9 @@ import java.util.Optional;
 public interface ClientService {
 
     /**
-     * Find a product given the {@link  Client  Client}'s id.
-     * @param identificationType {@link  Client#getIdentificationType()} () Client}'s identification type to find.
-     * @param identification {@link  Client#getIdentification() Client's} identification to find.
+     * Find a client given the {@link  Client  Client}'s id.
+     * @param identificationType {@link  Client#identificationType Client}'s identification type to find.
+     * @param identification {@link  Client#identification Client}'s identification to find.
      * @return Optional object with {@link  Client  Client} information if it exists,
      * otherwise an optional empty is returned.
      */
@@ -39,8 +39,8 @@ public interface ClientService {
 
     /**
      * Delete a {@link  Client  Client}
-     * @param identificationType {@link  Client#getIdentificationType()} () Client}'s identification type to delete.
-     * @param identification {@link  Client#getIdentification() Client's} identification to delete.
+     * @param identificationType {@link  Client#identificationType Client}'s identification type to delete.
+     * @param identification {@link  Client#identification Client}'s identification to delete.
      */
     void deleteClient(IdentificationType identificationType, Long identification);
 
